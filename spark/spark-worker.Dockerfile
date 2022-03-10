@@ -1,7 +1,6 @@
 FROM spark-base
 
 # -- Runtime
-
 ARG spark_worker_web_ui=8081
 
 EXPOSE ${spark_worker_web_ui}
