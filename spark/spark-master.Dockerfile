@@ -1,4 +1,5 @@
 FROM spark-base
+LABEL maintainer="carl020958@korea.ac.kr"
 
 # -- Runtime
 ARG spark_master_web_ui=8080

@@ -1,4 +1,5 @@
 FROM cluster-base
+LABEL maintainer="carl020958@korea.ac.kr"
 
 # -- Layer: Apache Spark
 ARG spark_version=3.1.2

@@ -1,17 +1,39 @@
 ARG debian_buster_image_tag=8-jre-slim
 FROM openjdk:${debian_buster_image_tag}
+LABEL maintainer="carl020958@korea.ac.kr"
 
 # -- Layer: OS + JDK8 + Python3.8.10 + mecab
 ARG shared_workspace=/opt/workspace
+
+ARG PYTHON_VERSION=3.8.10
 
 RUN set -x \
     && mkdir -p ${shared_workspace} \
     && apt-get update -y \
     && apt-get install -y curl \
-    && apt-get install -y python3 \
-    && apt-get install -y python3-pip \
+    && apt-get install -y build-essential \
+    && apt-get install -y zlib1g-dev \
+    && apt-get install -y libncurses5-dev \
+    && apt-get install -y libgdbm-dev \
+    && apt-get install -y libnss3-dev \
+    && apt-get install -y libssl-dev \
+    && apt-get install -y libreadline-dev \
+    && apt-get install -y libffi-dev \
+    && apt-get install -y libbz2-dev \
     && apt-get install -y autoconf \
-    && ln -s /usr/bin/python3 /usr/bin/python \
+    && cd ${shared_workspace} \
+    && curl -O https://www.python.org/ftp/python/${PYTHON_VERSION}/Python-${PYTHON_VERSION}.tgz \
+    && tar -zxvf Python-${PYTHON_VERSION}.tgz \
+    && cd Python-${PYTHON_VERSION} \
+    && ./configure --enable-optimizations \
+    && make altinstall \
+    && ln -s /usr/local/bin/python3.8 /usr/local/bin/python3
+
+RUN set -x \
+    && cd ${shared_workspace} \
+    && curl -O https://bootstrap.pypa.io/get-pip.py \
+    && python3 get-pip.py \
+    && rm -rf ${shared_workspace}/* \
     && rm -rf /var/lib/apt/lists/*
 
 # mecab
@@ -37,10 +59,8 @@ RUN set -x \
   && ./configure --build=aarch64-unknown-linux-gnu \
   && make && make install \
   && cd ${shared_workspace} \
-  && rm mecab-0.996-ko-0.9.2.tar.gz mecab-ko-dic-2.1.1-20180720.tar.gz \
+  && rm mecab-0.996-ko-0.9.2.tar.gz mecab-ko-dic-2.1.1-20180720.tar.gz
   # sh -c 'echo "dicdir=/usr/local/lib/mecab/dic/mecab-ko-dic" > /usr/local/etc/mecabrc' && \
-  && cd / \
-  && rm -rf /var/lib/apt/lists/* /tmp/*
 
 # add jars
 RUN set -x \
@@ -54,17 +74,20 @@ RUN set -x \
   && curl -LO https://repo1.maven.org/maven2/mysql/mysql-connector-java/8.0.21/mysql-connector-java-8.0.21.jar
 
 RUN set -x \
-    && pip3 install --upgrade pip setuptools wheel \
-    && pip3 install pandas \
-    && pip3 install scipy \
-    && pip3 install Cython \
-    && pip3 install scikit-learn==0.22.1  \
-    # && pip3 install tensorflow \
-    # && pip3 install torch  \
-    && pip3 install JPype1 \
-    && pip3 install konlpy \
-    && pip3 install mecab-python3 \
-    && pip3 install kss
+    && pip install --upgrade pip setuptools wheel \
+    && pip install pandas \
+    # m1
+    && pip install tensorflow==2.6.0 -f https://tf.kmtea.eu/whl/stable.html \
+    # intel
+    # && pip install tensorflow==2.6.0 \
+    && pip install scipy \
+    && pip install Cython \
+    && pip install scikit-learn==0.22.1  \
+    # && pip install torch  \
+    && pip install JPype1 \
+    && pip install konlpy \
+    && pip install mecab-python3 \
+    && pip install kss
 
 # -- Runtime
 VOLUME ${shared_workspace}
