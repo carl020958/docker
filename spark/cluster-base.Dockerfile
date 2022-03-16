@@ -20,6 +20,7 @@ RUN set -x \
     && apt-get install -y libreadline-dev \
     && apt-get install -y libffi-dev \
     && apt-get install -y libbz2-dev \
+    && apt-get install libsqlite3-dev \
     && apt-get install -y autoconf \
     && cd ${shared_workspace} \
     && curl -O https://www.python.org/ftp/python/${PYTHON_VERSION}/Python-${PYTHON_VERSION}.tgz \
