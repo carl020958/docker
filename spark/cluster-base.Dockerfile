@@ -88,7 +88,8 @@ RUN set -x \
     && pip install JPype1 \
     && pip install konlpy \
     && pip install mecab-python3 \
-    && pip install kss
+    && pip install kss \
+    && pip uninstall -y keras==2.8.0
 
 # -- Runtime
 VOLUME ${shared_workspace}
