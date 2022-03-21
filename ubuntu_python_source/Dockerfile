@@ -3,7 +3,6 @@ LABEL maintainer="carl020958@korea.ac.kr"
 
 ENV DEBIAN_FRONTEND=noninteractive
 ARG PYTHON_VERSION=3.8.10
-ARG PYTHON_VER=3.8
 
 RUN set -x \
     && apt-get update -y \
