@@ -2,7 +2,7 @@
 
 SPARK_VERSION="3.1.2"
 HADOOP_VERSION="3.2"
-JUPYTERLAB_VERSION="2.2.6"
+# JUPYTERLAB_VERSION="2.2.6"
 
 # cluster-base
 docker build --no-cache \
@@ -26,9 +26,9 @@ docker build --no-cache \
   -f spark-worker.Dockerfile \
   -t spark-worker .
 
-# jupyterlab
-docker build \
-  --build-arg spark_version="${SPARK_VERSION}" \
-  --build-arg jupyterlab_version="${JUPYTERLAB_VERSION}" \
-  -f jupyterlab.Dockerfile \
-  -t jupyterlab .
+# # jupyterlab
+# docker build \
+#   --build-arg spark_version="${SPARK_VERSION}" \
+#   --build-arg jupyterlab_version="${JUPYTERLAB_VERSION}" \
+#   -f jupyterlab.Dockerfile \
+#   -t jupyterlab .
