@@ -5,6 +5,11 @@ docker build --no-cache \
   -f ./base/. \
   -t cluster-base .
 
+# base-python
+docker build --no-cache \
+  -f ./base-python/. \
+  -t base-python .
+
 # datanode
 docker build --no-cache \
   -f ./datanode/. \
@@ -29,3 +34,8 @@ docker build --no-cache \
 docker build --no-cache \
   -f ./resourcemanager/. \
   -t resourcemanager .
+
+# spark
+docker build --no-cache \
+  -f ./spark/. \
+  -t spark .
