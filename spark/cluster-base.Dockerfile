@@ -6,7 +6,6 @@ LABEL maintainer="carl020958@korea.ac.kr"
 ARG shared_workspace=/opt/workspace
 
 ARG PYTHON_VERSION=3.8.10
-ARG PYTHON_VERSION_PREFIX="$(echo $PYTHON_VERSION | cut -d "." -f 1-2)"
 
 RUN set -x \
     && mkdir -p ${shared_workspace} \
@@ -29,7 +28,7 @@ RUN set -x \
     && cd Python-${PYTHON_VERSION} \
     && ./configure --enable-optimizations \
     && make altinstall \
-    && ln -s /usr/local/bin/python%{PYTHON_VERSION_PREFIX} /usr/local/bin/python3
+    && ln -s /usr/local/bin/python$(echo $PYTHON_VERSION | cut -d "." -f 1-2) /usr/local/bin/python3
 
 RUN set -x \
     && cd ${shared_workspace} \

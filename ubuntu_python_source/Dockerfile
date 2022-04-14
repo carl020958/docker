@@ -1,9 +1,7 @@
 FROM ubuntu:18.04
 LABEL maintainer="carl020958@korea.ac.kr"
 
-ENV DEBIAN_FRONTEND=noninteractive
 ARG PYTHON_VERSION=3.8.10
-ARG PYTHON_VERSION_PREFIX="$(echo $PYTHON_VERSION | cut -d "." -f 1-2)"
 
 RUN set -x \
     && apt-get update -y \
@@ -23,10 +21,10 @@ RUN set -x \
     && cd /tmp/Python-${PYTHON_VERSION} \
     && ./configure --enable-optimizations \
     && make altinstall \
-    && ln -s /usr/local/bin/python${PYTHON_VERSION_PREFIX} /usr/local/bin/python3 \
+    && ln -s /usr/local/bin/python$(echo $PYTHON_VERSION | cut -d "." -f 1-2) /usr/local/bin/python3 \
     && curl -fSL https://bootstrap.pypa.io/get-pip.py -o /tmp/get-pip.py \
     && python3 /tmp/get-pip.py \
-    && rm -rf /tmp/Python*
+    && rm -rf /tmp/Python* \
     && rm -rf /tmp/*.py \
     && rm -rf /var/lib/apt/lists/*
 
