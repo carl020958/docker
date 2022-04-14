@@ -25,10 +25,8 @@ RUN set -x \
     && rm /tmp/hadoop.tar.gz*
 
 RUN ln -s /opt/hadoop-$HADOOP_VERSION/etc/hadoop /etc/hadoop \
-    # cp /etc/hadoop/mapred-site.xml.template /etc/hadoop/mapred-site.xml && \
     && mkdir /opt/hadoop-$HADOOP_VERSION/logs \
-    && mkdir /hadoop-data \
-    && rm /opt/hadoop-$HADOOP_VERSION/share/hadoop/hdfs/lib/leveldbjni-all-1.8.jar
+    && mkdir /hadoop-data
 
 ENV HADOOP_PREFIX=/opt/hadoop-$HADOOP_VERSION
 ENV HADOOP_CONF_DIR=/etc/hadoop
@@ -37,7 +35,7 @@ ENV MULTIHOMED_NETWORK=1
 ENV USER=root
 ENV PATH $HADOOP_PREFIX/bin/:$PATH
 
-ADD ./base/leveldbjni-all-1.8.jar /opt/hadoop-$HADOOP_VERSION/share/hadoop/hdfs/lib/leveldbjni-all-1.8.jar
+ADD ./base/leveldbjni-all-1.8.jar /tmp/leveldbjni-all-1.8.jar
 ADD ./base/entrypoint.sh /entrypoint.sh
 RUN chmod a+x /entrypoint.sh
 

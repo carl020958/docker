@@ -77,5 +77,10 @@ if [ -n "$GANGLIA_HOST" ]; then
     done > /etc/hadoop/hadoop-metrics2.properties
 fi
 
+if [ $HOSTTYPE = "aarch64" ] ; then
+    rm /opt/hadoop-$HADOOP_VERSION/share/hadoop/hdfs/lib/leveldbjni-all-1.8.jar
+    cp /tmp/leveldbjni-all-1.8.jar /opt/hadoop-$HADOOP_VERSION/share/hadoop/hdfs/lib/leveldbjni-all-1.8.jar
+fi
+
 
 exec $@
