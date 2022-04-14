@@ -3,6 +3,7 @@ LABEL maintainer="carl020958@korea.ac.kr"
 
 ENV DEBIAN_FRONTEND=noninteractive
 ARG PYTHON_VERSION=3.8.10
+ARG PYTHON_VERSION_PREFIX="$(echo $PYTHON_VERSION | cut -d "." -f 1-2)"
 
 RUN set -x \
     && apt-get update -y \
@@ -23,7 +24,7 @@ RUN set -x \
     && cd Python-${PYTHON_VERSION} \
     && ./configure --enable-optimizations \
     && make altinstall \
-    && ln -s /usr/local/bin/python3.8 /usr/local/bin/python3 \
+    && ln -s /usr/local/bin/python${PYTHON_VERSION_PREFIX} /usr/local/bin/python3 \
     && curl -O https://bootstrap.pypa.io/get-pip.py \
     && python3 get-pip.py \
     && pip3 install --upgrade pip \
