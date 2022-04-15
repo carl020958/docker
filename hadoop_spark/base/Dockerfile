@@ -16,10 +16,10 @@ ENV JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk-arm64
 # intel
 # ENV JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
 ENV HADOOP_VERSION=3.2.3
-ARG HADOOP_URL=https://www.apache.org/dist/hadoop/common/hadoop-$HADOOP_VERSION/hadoop-$HADOOP_VERSION.tar.gz
+ARG HADOOP_URL=https://www.apache.org/dist/hadoop/common/hadoop-${HADOOP_VERSION}/hadoop-${HADOOP_VERSION}.tar.gz
 RUN set -x \
-    && curl -fSL "$HADOOP_URL" -o /tmp/hadoop.tar.gz \
-    && curl -fSL "$HADOOP_URL.asc" -o /tmp/hadoop.tar.gz.asc \
+    && curl -fSL "${HADOOP_URL}" -o /tmp/hadoop.tar.gz \
+    && curl -fSL "${HADOOP_URL}.asc" -o /tmp/hadoop.tar.gz.asc \
     && gpg --verify /tmp/hadoop.tar.gz.asc \
     && tar -xvf /tmp/hadoop.tar.gz -C /opt/ \
     && rm /tmp/hadoop.tar.gz*
