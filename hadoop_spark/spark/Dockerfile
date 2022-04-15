@@ -14,3 +14,5 @@ RUN set -x \
     && mv ${SPARK_HOME}/conf/spark-defaults.conf.template ${SPARK_HOME}/conf/spark-defaults.conf
 
 WORKDIR ${SPARK_HOME}
+
+CMD ["bash"]
