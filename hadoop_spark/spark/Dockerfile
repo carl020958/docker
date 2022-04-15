@@ -11,7 +11,8 @@ RUN set -x \
     && tar -zxvf /tmp/spark.tgz -C /opt/ \
     && mv /opt/spark-${SPARK_VERSION}-bin-hadoop${SPARK_HADOOP_VERSION} ${SPARK_HOME} \
     && rm /tmp/spark.tgz \
-    && mv ${SPARK_HOME}/conf/spark-defaults.conf.template ${SPARK_HOME}/conf/spark-defaults.conf
+    && mv ${SPARK_HOME}/conf/spark-defaults.conf.template ${SPARK_HOME}/conf/spark-defaults.conf \
+    && mkdir ${shared_workspace}/src
 
 WORKDIR ${SPARK_HOME}
 
