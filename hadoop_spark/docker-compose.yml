@@ -28,13 +28,13 @@ services:
     ports:
       - "8188:8188"
     volumes:
-      - hadoop_historyserver:/hadoop/yarn/timeline
+      - historyserver:/hadoop/yarn/timeline
     env_file:
       - ./hadoop.env
   
   nodemanager1:
     image: nodemanager
-    container_name: nodemanager
+    container_name: nodemanager1
     networks:
       - hadoop
     depends_on:
@@ -49,7 +49,7 @@ services:
     networks:
       - hadoop
     volumes:
-      - hadoop_namenode:/hadoop/dfs/name
+      - namenode:/hadoop/dfs/name
     environment:
       - CLUSTER_NAME=yarn
     ports:
@@ -65,7 +65,7 @@ services:
     depends_on:
       - namenode
     volumes:
-      - hadoop_datanode1:/hadoop/dfs/data
+      - datanode1:/hadoop/dfs/data
     env_file:
       - ./hadoop.env
   
@@ -77,15 +77,30 @@ services:
     depends_on:
       - namenode
     volumes:
-      - hadoop_datanode2:/hadoop/dfs/data
+      - datanode2:/hadoop/dfs/data
     env_file:
       - ./hadoop.env
 
+  spark:
+    image: spark
+    container_name: spark
+    networks:
+      - hadoop
+    depends_on:
+      - resourcemanager
+      - nodemanager1
+    # volumes:
+    #   - /opt/spark/workspace
+    env_file:
+      - ./spark.env
+    stdin_open: true
+    tty: true
+
 volumes:
-  hadoop_namenode:
-  hadoop_datanode1:
-  hadoop_datanode2:
-  hadoop_historyserver:
+  namenode:
+  datanode1:
+  datanode2:
+  historyserver:
 
 networks:
   hadoop:
