@@ -90,7 +90,7 @@ services:
       - resourcemanager
       - nodemanager1
     # volumes:
-    #   - /opt/spark/workspace
+    #   - /opt/workspace
     env_file:
       - ./spark.env
     stdin_open: true
