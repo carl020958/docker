@@ -4,3 +4,4 @@ airflow_amd64
 centos_python
 debian_python
 ubuntu_airflow
+*credentials.json

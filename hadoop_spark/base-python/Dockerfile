@@ -39,7 +39,7 @@ RUN set -x \
     && tar -zxvf mecab-0.996-ko-0.9.2.tar.gz \
     && cd mecab-0.996-ko-0.9.2 \
     # -- intel
-    #./configure && \
+    # && ./configure \
     # -- m1
     && ./configure --build=aarch64-unknown-linux-gnu \
     && make && make check && make install && ldconfig \
@@ -50,25 +50,26 @@ RUN set -x \
     && cd mecab-ko-dic-2.1.1-20180720 \
     && ./autogen.sh \
     # -- intel
-    #./configure && \
+    # && ./configure \
     # -- m1
     && ./configure --build=aarch64-unknown-linux-gnu \
     && make && make install \
     && cd ${shared_workspace} \
     && rm mecab-0.996-ko-0.9.2.tar.gz mecab-ko-dic-2.1.1-20180720.tar.gz
 
-# add jars
+# add jars & make folder src
 RUN set -x \
     && cd ${shared_workspace} \
     && mkdir jars \
     && cd jars \
-    # && curl -LO https://repo1.maven.org/maven2/org/mongodb/spark/mongo-spark-connector_2.12/3.0.1/mongo-spark-connector_2.12-3.0.1.jar \
-    # && curl -LO https://repo1.maven.org/maven2/org/mongodb/mongodb-driver-core/4.0.5/mongodb-driver-core-4.0.5.jar \
-    # && curl -LO https://repo1.maven.org/maven2/org/mongodb/mongodb-driver-sync/4.0.5/mongodb-driver-sync-4.0.5.jar \
-    # && curl -LO https://repo1.maven.org/maven2/org/mongodb/bson/4.0.5/bson-4.0.5.jar \
+    && curl -LO https://repo1.maven.org/maven2/org/mongodb/spark/mongo-spark-connector_2.12/3.0.1/mongo-spark-connector_2.12-3.0.1.jar \
+    && curl -LO https://repo1.maven.org/maven2/org/mongodb/mongodb-driver-core/4.0.5/mongodb-driver-core-4.0.5.jar \
+    && curl -LO https://repo1.maven.org/maven2/org/mongodb/mongodb-driver-sync/4.0.5/mongodb-driver-sync-4.0.5.jar \
+    && curl -LO https://repo1.maven.org/maven2/org/mongodb/bson/4.0.5/bson-4.0.5.jar \
     && curl -LO https://repo1.maven.org/maven2/mysql/mysql-connector-java/8.0.21/mysql-connector-java-8.0.21.jar \
     && curl -LO https://repo1.maven.org/maven2/org/apache/hadoop/hadoop-aws/3.2.3/hadoop-aws-3.2.3.jar \
-    && curl -LO https://repo1.maven.org/maven2/com/amazonaws/aws-java-sdk-bundle/1.11.901/aws-java-sdk-bundle-1.11.901.jar
+    && curl -LO https://repo1.maven.org/maven2/com/amazonaws/aws-java-sdk-bundle/1.11.901/aws-java-sdk-bundle-1.11.901.jar \
+    && mkdir -p /opt/workspace/src
     
 
 RUN pip3 install --upgrade \
@@ -77,7 +78,7 @@ RUN pip3 install --upgrade \
     wheel \
     pandas \
     # m1
-    && pip install tensorflow==2.6.0 -f https://tf.kmtea.eu/whl/stable.html \
+    # tensorflow==2.6.0 -f https://tf.kmtea.eu/whl/stable.html \
     # intel
     # tensorflow==2.6.0 \
     # scipy \
