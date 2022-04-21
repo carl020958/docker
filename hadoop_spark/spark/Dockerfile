@@ -14,7 +14,7 @@ RUN set -x \
     && mv ${SPARK_HOME}/conf/spark-defaults.conf.template ${SPARK_HOME}/conf/spark-defaults.conf \
     && mkdir ${shared_workspace}/src
 
-# Airflow (JAVA_HOME / SSH)
+# Airflow (spark.env / SSH)
 COPY ./spark/run.sh /run.sh
 RUN set -x \
     && mv ${SPARK_HOME}/conf/spark-env.sh.template ${SPARK_HOME}/conf/spark-env.sh \
