@@ -19,6 +19,7 @@ COPY ./spark/run.sh /run.sh
 RUN set -x \
     && mv ${SPARK_HOME}/conf/spark-env.sh.template ${SPARK_HOME}/conf/spark-env.sh \
     && echo "JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk-arm64" >> ${SPARK_HOME}/conf/spark-env.sh \
+    && echo "HADOOP_CONF_DIR=$HADOOP_CONF_DIR" >> ${SPARK_HOME}/conf/spark-env.sh \
     && apt-get update -y \
     && apt-get install -y openssh-server \
     && sed -i "s/#PermitRootLogin prohibit-password/PermitRootLogin yes/" /etc/ssh/sshd_config \
