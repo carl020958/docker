@@ -1,6 +1,6 @@
 ARG debian_buster_image_tag=8-jre-slim
 FROM openjdk:${debian_buster_image_tag}
-LABEL maintainer="carl020958@korea.ac.kr"
+LABEL maintainer="zsu58@icloud.com"
 
 # -- Layer: OS + JDK8 + Python3.8.10 + mecab
 ARG shared_workspace=/opt/workspace

@@ -1,5 +1,5 @@
 FROM base-python
-LABEL maintainer="carl020958@korea.ac.kr"
+LABEL maintainer="zsu58@icloud.com"
 
 ENV SPARK_VERSION=3.1.2
 ARG SPARK_HADOOP_VERSION=3.2

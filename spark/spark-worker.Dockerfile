@@ -1,5 +1,5 @@
 FROM spark-base
-LABEL maintainer="carl020958@korea.ac.kr"
+LABEL maintainer="zsu58@icloud.com"
 
 # -- Runtime
 ARG spark_worker_web_ui=8081

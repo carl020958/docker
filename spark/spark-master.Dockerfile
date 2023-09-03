@@ -1,5 +1,5 @@
 FROM spark-base
-LABEL maintainer="carl020958@korea.ac.kr"
+LABEL maintainer="zsu58@icloud.com"
 
 # Airflow (JAVA_HOME / SSH)
 COPY entrypoint.sh /entrypoint.sh

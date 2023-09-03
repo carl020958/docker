@@ -1,5 +1,5 @@
 FROM carl020958/ubuntu-python:18.04-3.8.10
-LABEL maintainer="carl020958@korea.ac.kr"
+LABEL maintainer="zsu58@icloud.com"
 
 RUN set -x \
     && apt-get update -y \

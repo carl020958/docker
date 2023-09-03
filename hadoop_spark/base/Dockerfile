@@ -1,5 +1,5 @@
 FROM ubuntu:18.04
-LABEL maintainer="carl020958@korea.ac.kr"
+LABEL maintainer="zsu58@korea.ac.kr"
 
 RUN apt-get update -y \
     && apt-get install -y \

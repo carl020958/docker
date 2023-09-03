@@ -1,5 +1,5 @@
 FROM ubuntu:18.04
-LABEL maintainer="carl020958@korea.ac.kr"
+LABEL maintainer="zsu58@icloud.com"
 
 ARG PYTHON_VERSION=3.8.10
 

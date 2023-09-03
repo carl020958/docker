@@ -1,5 +1,5 @@
 FROM cluster-base
-LABEL maintainer="carl020958@korea.ac.kr"
+LABEL maintainer="zsu58@korea.ac.kr"
 
 ENV PYTHON_VERSION=3.8.10
 ARG shared_workspace=/opt/workspace
