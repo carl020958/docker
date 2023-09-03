@@ -1,5 +1,5 @@
 FROM base-python
-LABEL maintainer="zsu58@korea.ac.kr"
+LABEL maintainer="zsu58@icloud.com"
 
 HEALTHCHECK CMD curl -f http://localhost:8042/ || exit 1
 

@@ -1,5 +1,5 @@
 FROM cluster-base
-LABEL maintainer="zsu58@korea.ac.kr"
+LABEL maintainer="zsu58@icloud.com"
 
 HEALTHCHECK CMD curl -f http://localhost:9000/ || exit 1
 
