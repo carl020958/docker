@@ -1,5 +1,2 @@
 ### build
-docker build \
--t  flask-server .
-
-### run
+docker build -t  zsu58/flask:3.10 .
