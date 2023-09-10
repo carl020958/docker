@@ -1,10 +1,15 @@
 ### build
+```bash
 docker build -t jenkins-blueocean .
+```
 
 ### network
+```bash
 docker network create jenkins
+```
 
 ### run
+```bash
 docker run --name jenkins-blueocean \
   -d \
   --restart=on-failure \
@@ -17,3 +22,4 @@ docker run --name jenkins-blueocean \
   --volume jenkins-data:/var/jenkins_home \
   --volume jenkins-docker-certs:/certs/client:ro \
   jenkins-blueocean:latest
+```
