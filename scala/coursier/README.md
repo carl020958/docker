@@ -1,6 +1,6 @@
 ### build
 ```bash
-docker build -t zsu58/jupyter-scala .
+docker build -t zsu58/scala .
 ```
 
 ### run
